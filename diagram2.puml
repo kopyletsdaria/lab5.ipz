@@ -1,0 +1,49 @@
+@startuml
+class task2.ListeningState {
++ void open(TCPConnection)
++ void close(TCPConnection)
++ void send(TCPConnection,String)
++ void receive(TCPConnection)
+}
+
+class task2.ClosedState {
++ void open(TCPConnection)
++ void close(TCPConnection)
++ void send(TCPConnection,String)
++ void receive(TCPConnection)
+}
+
+class task2.EstablishedState {
++ void open(TCPConnection)
++ void close(TCPConnection)
++ void send(TCPConnection,String)
++ void receive(TCPConnection)
+}
+
+interface task2.ConnectionState {
+~ void open(TCPConnection)
+~ void close(TCPConnection)
+~ void send(TCPConnection,String)
+~ void receive(TCPConnection)
+}
+
+class task2.Main {
++ {static} void main(String[])
+}
+
+class task2.TCPConnection {
+- ConnectionState currentState
++ void setState(ConnectionState)
++ void open()
++ void close()
++ void send(String)
++ void receive()
+}
+
+
+
+
+task2.ConnectionState <|.. task2.ListeningState
+task2.ConnectionState <|.. task2.ClosedState
+task2.ConnectionState <|.. task2.EstablishedState
+@enduml

@@ -1,0 +1,61 @@
+@startuml
+class Network {
+- List<NetworkElement> elements
++ void add(NetworkElement)
++ void accept(NetworkVisitor)
+}
+
+
+class DisplayVisitor {
++ void visit(Network)
++ void visit(Server)
++ void visit(Workstation)
++ void visit(Cable)
+}
+
+class Server {
++ void accept(NetworkVisitor)
+}
+
+class Cable {
++ void accept(NetworkVisitor)
+}
+
+interface NetworkVisitor {
+~ void visit(Network)
+~ void visit(Server)
+~ void visit(Workstation)
+~ void visit(Cable)
+}
+
+class Main {
++ {static} void main(String[])
+}
+
+interface NetworkElement {
+~ void accept(NetworkVisitor)
+}
+
+class Workstation {
++ void accept(NetworkVisitor)
+}
+
+class CostVisitor {
+- double totalCost
++ void visit(Network)
++ void visit(Server)
++ void visit(Workstation)
++ void visit(Cable)
++ double getTotalCost()
+}
+
+
+
+
+NetworkElement <|.. Network
+NetworkVisitor <|.. DisplayVisitor
+NetworkElement <|.. Server
+NetworkElement <|.. Cable
+NetworkElement <|.. Workstation
+NetworkVisitor <|.. CostVisitor
+@enduml
